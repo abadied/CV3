@@ -19,8 +19,8 @@ def sweep(lattice, width, temp, posterior=None, sigma=2, icm=False):
             prob_min = (-1 / temp) * sum_neighbors
 
             if posterior is not None:
-                prob_plus -= ((posterior[i, j] ** 2) - 1) / (2 * (sigma ** 2))
-                prob_min -= ((posterior[i, j] ** 2) + 1) / (2 * (sigma ** 2))
+                prob_plus -= ((posterior[i, j] - 1) ** 2) / (2 * (sigma ** 2))
+                prob_min -= ((posterior[i, j] + 1) ** 2) / (2 * (sigma ** 2))
 
             probs = np.exp([prob_plus, prob_min])
             probs = probs / probs.sum()
@@ -85,9 +85,9 @@ def main():
     # Part 1
     temps = [1., 1.5, 2.]
     width = 8
-    for temp in temps:
-        gibbs_methods_sampler(width, temp, 10000, 25)
-        gibbs_methods_sampler(width, temp, 24900, 1, ergodic=True)
+    #for temp in temps:
+    #    gibbs_methods_sampler(width, temp, 10000, 25)
+    #    gibbs_methods_sampler(width, temp, 24900, 1, ergodic=True)
 
     # add plot
     fig, axes = plt.subplots(nrows=3, ncols=4, figsize=(12, 8))
