@@ -33,7 +33,7 @@ def sweep(lattice, width, temp, posterior=None, sigma=2, icm=False):
     return lattice
 
 
-def gibbs_sample_independently(width, temp, num_of_iter, num_of_sweeps, ergodic=False, warm_up=100):
+def gibbs_methods_sampler(width, temp, num_of_iter, num_of_sweeps, ergodic=False, warm_up=100):
 
     expectation_x11_x22 = 0
     expectation_x11_x88 = 0
@@ -86,8 +86,8 @@ def main():
     temps = [1., 1.5, 2.]
     width = 8
     for temp in temps:
-        gibbs_sample_independently(width, temp, 10000, 25)
-        gibbs_sample_independently(width, temp, 24900, 1, ergodic=True)
+        gibbs_methods_sampler(width, temp, 10000, 25)
+        gibbs_methods_sampler(width, temp, 24900, 1, ergodic=True)
 
     # add plot
     fig, axes = plt.subplots(nrows=3, ncols=4, figsize=(12, 8))
